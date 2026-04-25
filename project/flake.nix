@@ -1,5 +1,5 @@
 {
-  description = "Idris 2 project template";
+  description = "Idris 2 project";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -11,13 +11,6 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      defaultTemplate = self.templates.${system}.default;
-
-      templates.${system}.default = {
-        path = ./project;
-        description = "Idris 2 project template";
-      };
-
       devShells.${system}.default = pkgs.mkShell {
         name = "idris2-dev";
         buildInputs = [ pkgs.idris2 ];
@@ -25,7 +18,7 @@
 
       packages.${system}.default = pkgs.stdenv.mkDerivation {
         name = "project";
-        src = ./project;
+        src = ./.;
 
         nativeBuildInputs = [ pkgs.idris2 ];
 
