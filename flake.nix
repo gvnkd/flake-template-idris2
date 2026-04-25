@@ -18,9 +18,9 @@
 
       packages.${system}.default = pkgs.stdenv.mkDerivation {
         name = "project";
-        src = ./.;
+        src = ./project;
 
-        buildInputs = [ pkgs.idris2 ];
+        nativeBuildInputs = [ pkgs.idris2 ];
 
         buildPhase = ''
           idris2 --build project.ipkg

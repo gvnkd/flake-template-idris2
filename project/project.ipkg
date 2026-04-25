@@ -1,0 +1,14 @@
+package my-project
+version = 0.1.0
+brief = "A template Idris2 project demonstrating best practices"
+license = "MIT"
+authors = "Sergey"
+
+sourcedir = "src"
+
+modules = Main
+        , Types
+        , Math
+
+main = Main
+executable = project
