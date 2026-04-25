@@ -29,12 +29,18 @@ nix develop
 idris2 --build project.ipkg
 ```
 
-## Template source
+## Using a local clone
 
-The template lives under `project/`. The root `flake.nix` defines `templates.x86_64-linux.default` pointing to it. To use a local path:
+The template lives under `project/`. The root `flake.nix` defines `templates.x86_64-linux.default` pointing to it. If you've cloned this repo locally:
 
 ```bash
-nix flake init --template /path/to/this/repo
+nix flake init --template /path/to/your/clone
+```
+
+Or use the GitHub URL directly (recommended):
+
+```bash
+nix flake init --template github:gvnkd/flake-template-idris2
 ```
 
 ## License
