@@ -45,3 +45,10 @@ Guidelines in `STYLE.md` (adapted from stefan-hoeck/idris2-style-guide). 80-char
 - No test framework, no linter, no CI.
 - No README exists.
 - Minimal git history — treat the repo as early-stage.
+
+### Workflow (Sergey's rules)
+- **Always consult `docs/`** — the local Idris 2 reference docs are authoritative. Reference them before writing code.
+- **Consult `STYLE.md`** — follow all formatting rules. Update `STYLE.md` when you find new useful Idris 2 conventions; commit immediately.
+- **Use the compiler as a tool** — write type holes (`?name`), ask the compiler for inferred types, then implement.
+- **Small chunks only** — never write huge blocks of new code. Workflow: write a type hole → ask compiler for types → implement a small piece → add new type holes → repeat.
+- **Do not ask permission** for updates to `STYLE.md` — just update and commit.
