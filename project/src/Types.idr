@@ -23,21 +23,22 @@ updateAge f p = { age $= f } p
 
 ||| | A binary tree data type.
 public export
-data Tree a = Leaf
-            | Node (Tree a) a (Tree a)
+data Tree : Type -> Type where
+  Leaf : Tree a
+  Node : Tree a -> a -> Tree a -> Tree a
 
 ||| | Insert a value into a binary search tree.
 public export
 insert : Ord a => a -> Tree a -> Tree a
-insert x Leaf = Node Leaf x Leaf
+insert x Leaf         = Node Leaf x Leaf
 insert x (Node l v r) =
   if x < v then Node (insert x l) v r
-           else Node l v (insert x r)
+            else Node l v (insert x r)
 
 ||| | Convert a tree to a sorted list via in-order traversal.
 public export
 toSortedList : Tree a -> List a
-toSortedList Leaf = []
+toSortedList Leaf         = []
 toSortedList (Node l v r) = toSortedList l ++ [v] ++ toSortedList r
 
 ||| | A non-empty vector with a head and a tail vector.
@@ -51,7 +52,7 @@ data Vec1 : (n : Nat) -> Type -> Type where
 ||| | Get the head of a non-empty vector.
 public export
 vec1Head : Vec1 (S n) a -> a
-vec1Head (MkVec1 h _) = h
+vec1Head (MkVec1 h _)  = h
 
 ||| | Get the tail of a non-empty vector.
 public export

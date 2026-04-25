@@ -33,22 +33,25 @@ fibonacci (S (S k)) = add (fibonacci (S k)) (fibonacci k)
 ||| | Check if a number is even.
 public export
 isEven : Nat -> Bool
-isEven Z     = True
-isEven (S k) = not (isEven k)
 
 ||| | Check if a number is odd.
 public export
 isOdd : Nat -> Bool
+
+isEven Z     = True
+isEven (S k) = isOdd k
+
 isOdd Z     = False
-isOdd (S k) = not (isOdd k)
+isOdd (S k) = isEven k
 
 ||| | Reverse a list using an accumulator.
 public export
 reverse : List a -> List a
 reverse xs = revAcc [] xs
+
   where
     revAcc : List a -> List a -> List a
-    revAcc acc [] = acc
+    revAcc acc []      = acc
     revAcc acc (x :: xs) = revAcc (x :: acc) xs
 
 ||| | Reverse a vector, preserving length.
@@ -71,10 +74,13 @@ mapVect f (x :: xs) = f x :: mapVect f xs
 
 ||| | A signed integer type that can be negative.
 |||
-||| @ n the unsigned magnitude
-||| @ neg whether the value is negative
+||| @ magnitude the unsigned magnitude
+||| @ negative whether the value is negative
 public export
-data SInt = MkSInt Nat Bool
+record SInt where
+  constructor MkSInt
+  magnitude : Nat
+  negative  : Bool
 
 ||| | Convert a natural number to a signed integer.
 public export
@@ -84,4 +90,4 @@ natToSInt n = MkSInt n False
 ||| | Check if a signed integer is positive.
 public export
 isPositive : SInt -> Bool
-isPositive (MkSInt _ neg) = not neg
+isPositive v = not (negative v)

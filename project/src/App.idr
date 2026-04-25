@@ -9,8 +9,8 @@ import Types
 
 ||| | A simple counter state tag.
 public export
-data CounterState : Type where
-  MkCounter : CounterState
+record CounterState where
+  constructor MkCounter
 
 ||| | Compute a greeting message for a person.
 public export
